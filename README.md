@@ -6,10 +6,7 @@ A registry of YAML templates for Azure Pipelines.
 
 ## Using the template registry
 
-You can easily use all of the templates available in this repo by using a [`repository` resource](https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema%2Cparameter-schema#repository-resource).
-
-```yaml
-```
+Coming soon.
 
 ## Registry structure
 
