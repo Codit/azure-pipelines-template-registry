@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Ask a question 💬
+    url: https://github.com/Codit/azure-pipelines-template-registry/discussions/new
+    about: Ask a question or request support on how to use a given template.
