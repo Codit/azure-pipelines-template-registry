@@ -1,0 +1,22 @@
+parameters:
+- name: directory
+  displayName: Directory
+  type: string
+- name: targetFiles
+  displayName: Target Files Pattern
+  type: string
+  default: '*.json'
+
+steps:
+- task: qetza.replacetokens.replacetokens-task.replacetokens@4
+  displayName: Replace Tokens in ${{ parameters.directory }} (${{ parameters.targetFiles }})
+  inputs:
+    rootDirectory: '${{ parameters.directory }}'
+    targetFiles: '${{ parameters.targetFiles }}'
+    encoding: 'auto'
+    writeBOM: true
+    verbosity: 'detailed'
+    actionOnMissing: 'fail'
+    keepToken: false
+    tokenPrefix: '#{'
+    tokenSuffix: '}#'
