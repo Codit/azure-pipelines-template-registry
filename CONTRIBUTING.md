@@ -4,7 +4,7 @@
 
 Adding a new template is easy:
 
-1. Create a new file in the folder that aligns with the scope of the template (`stage`, `job` or `step`) with `.yml` extension.
+1. Create a new file in the folder that aligns with the scope of the template (`stage`, `job` or `step`), is versioned and uses `.yml` as an extension.
 2. Provide the template functionality that you want to contribute
 3. Document the new template in the README of the folder ([docs](#documenting-a-template))
 

@@ -23,7 +23,7 @@ resources:
 steps:
   # Specify the path to the template to use suffixed
   # with '@' and the name of your repository ID above
-- template: steps/replace-tokens.yml@template-registry
+- template: steps/v1/replace-tokens.yml@template-registry
   parameters:
     directory: '$(Pipeline.Workspace)/package_azure/artifact/arm'
 ```
@@ -38,7 +38,9 @@ The repo is structured as follows:
 - `jobs` - Contains all templates for jobs
 - `steps` - Contains all templates for steps
 
-Every folder can have sub-folders to provide more structure, for example `steps/helm/` that provides all steps related to Helm.
+Every folder can should have sub-folders that is used for versioning and optionally provide more structure.
+
+For example, `steps/v1/helm/`provides all steps related to Helm for v1.
 
 ## Contributing
 
