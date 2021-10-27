@@ -12,9 +12,13 @@ You can easily use the template registry in your own pipelines:
 resources:
   repositories:
   - type: github
-    name: Codit/azure-pipelines-template-registry # Name of this GitHub repository
-    repository: template-registry # Name of repository to refer to in your pipeline
-    endpoint: Codit # Name of your GitHub service connection
+    # Name of this GitHub repository
+    name: Codit/azure-pipelines-template-registry
+    # Name of repository to refer to in your pipeline
+    repository: template-registry
+    # Name of your GitHub service connection in Azure DevOps
+    # See https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml#github-service-connection
+    endpoint: Codit
 
 # ...
 
