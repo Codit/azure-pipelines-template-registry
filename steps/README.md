@@ -116,7 +116,7 @@ Setup Azure Container Registry Repository allows you to add a given public Helm 
     serviceConnectionName: 'my-azure-service-connection'
     
     # Name of your Azure Container Registry
-    repositoryName: 'codito'
+    registryName: 'codito'
 ```
 
 ### Update Helm Repository

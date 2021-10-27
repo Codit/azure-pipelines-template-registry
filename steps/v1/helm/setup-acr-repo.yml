@@ -1,6 +1,6 @@
 parameters:
-- name: repositoryName
-  displayName: Helm Chart Repository Name
+- name: registryName
+  displayName: Azure Container Registry Name
   type: string
 - name: serviceConnectionName
   displayName: Azure Service Connection Name
@@ -8,17 +8,17 @@ parameters:
 
 steps:
 - task: AzureCLI@2
-  displayName: Setup ${{ parameters.repositoryName }} Helm repo
+  displayName: Setup ${{ parameters.registryName }} Helm repo
   inputs:
     azureSubscription: '${{ parameters.serviceConnectionName }}'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
-      az configure --defaults acr=${{ parameters.repositoryName }}
+      az configure --defaults acr=${{ parameters.registryName }}
 
       echo 'Adding repo'
-      az acr helm repo add --name ${{ parameters.repositoryName }}
+      az acr helm repo add --name ${{ parameters.registryName }}
 - template: ./update-repo.yml
 - template: ./list-available-charts.yml
   parameters:
-    repositoryName: '${{ parameters.repositoryName }}'
+    repositoryName: '${{ parameters.registryName }}'
