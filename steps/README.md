@@ -7,13 +7,14 @@ This folder contains all step templates that are available.
   - [Replace Tokens](#replace-tokens)
 - **Helm**
   - [Install Tool](#install-helm-tool)
-  - [Add Helm Repository (Public)](#add-helm-repository-public)
-  - [Add Helm Repository (Azure Container Registry)](#add-helm-repository-azure-container-registry)
-  - [Update Helm Repository](#update-helm-repository)
+  - [Add Repository (Public)](#add-helm-repository-public)
+  - [Add Repository (Azure Container Registry)](#add-helm-repository-azure-container-registry)
+  - [Update Repository](#update-helm-repository)
   - [List Available Helm Charts in Repository](#list-available-helm-charts-in-repository)
   - [Lint Chart](#lint-helm-chart)
-  - [Package Helm Chart](#package-helm-chart)
-  - [Push Helm Chart](#push-helm-chart)
+  - [Package Chart](#package-helm-chart)
+  - [Push Chart](#push-helm-chart)
+  - [Package Chart](#install-helm-chart)
 
 Learn more in the [official documentation](https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema%2Cparameter-schema#step-templates).
 
@@ -195,4 +196,26 @@ Easily push a packaged Helm chart to your Azure Container Registry so that it ca
     # Name of the Azure Pipelines service connection to your Azure subscription
     # Learn more about Azure Service connections on https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml#azure-resource-manager-service-connection
     registrySubscription: 'my-azure-service-connection'
+```
+
+### Install Helm Chart
+
+Easily install a Helm chart on your Azure Kubernetes Service cluster.
+
+**Example** - Install v1.1.0 of the example-chart Helm chart on an Azure Kubernetes Service cluster:
+
+```yaml
+- template: steps/v1/helm/push-chart-to-acr.yml
+  parameters:
+
+    # Name of the Azure Pipelines service connection to your Azure subscription
+    # Learn more about Azure Service connections on https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml#azure-resource-manager-service-connection
+    registrySubscription: 'my-azure-service-connection'
+    resourceGroupName: 'azure-kubernetes-service-resource-group'
+    kubernetesClusterName: 'azure-kubernetes-service-cluster'
+    kubernetesNamespace: 'example-namespace'
+    chartName: 'helm-repo/example-chart'
+    chartVersion: '1.1.0'
+    releaseName: example-helm-release
+    valuesFile: '$(Pipeline.Workspace)/config/app.config.yml'
 ```

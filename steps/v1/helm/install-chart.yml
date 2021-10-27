@@ -1,0 +1,49 @@
+parameters:
+- name: releaseName
+  displayName: Release Name
+  type: string
+- name: resourceGroupName
+  displayName: Resource Group Name
+  type: string
+- name: serviceConnectionName
+  displayName: Azure Service Connection Name
+  type: string
+- name: kubernetesClusterName
+  displayName: Kubernetes Cluster Name
+  type: string
+- name: kubernetesNamespace
+  displayName: Kubernetes Namespace
+  type: string
+- name: chartName
+  displayName: Helm Chart Name
+  type: string
+- name: chartVersion
+  displayName: Helm Chart Version
+  type: string
+- name: valuesFile
+  displayName: Values File
+  type: string
+  default: ''
+- name: values
+  displayName: Values
+  type: string
+  default: ''
+
+steps:
+- task: HelmDeploy@0
+  displayName: 'Deploy Helm Charts'
+  inputs:
+    connectionType: 'Azure Resource Manager'
+    azureSubscription: '${{ parameters.serviceConnectionName }}'
+    azureResourceGroup: '${{ parameters.resourceGroupName }}'
+    kubernetesCluster: '${{ parameters.kubernetesClusterName }}'
+    namespace: '${{ parameters.kubernetesNamespace }}'
+    command: upgrade
+    chartType: Name
+    chartName: ${{ parameters.chartName }}
+    valueFile: '${{ parameters.valuesFile }}'
+    overrideValues: '${{ parameters.values }}'
+    releaseName: ${{ parameters.releaseName }}
+    waitForExecution: true
+    failOnStderr: true
+    arguments: '--create-namespace --version ${{ parameters.chartVersion }}'
