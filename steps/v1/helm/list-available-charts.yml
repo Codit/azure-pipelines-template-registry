@@ -1,0 +1,8 @@
+parameters:
+- name: repositoryName
+  displayName: Helm Chart Registry Name
+  type: string
+
+steps:
+- script: helm search repo ${{ parameters.repositoryName }}/
+  displayName: 'List all Helm charts in ${{ parameters.repositoryName }}'

@@ -1,0 +1,22 @@
+parameters:
+- name: chartName
+  displayName: Helm Chart Name
+  type: string
+- name: valuesFile
+  displayName: Values File
+  type: string
+  default: ''
+
+steps:
+- powershell: |	
+    $valuesCommand = '';	
+    if ('${{ parameters.valuesFile }}' -ne '') {	
+      $valuesCommand = '--values ${{ parameters.valuesFile }}';
+      Write-Host "Values command = $valuesCommand"
+    }	
+    Write-Host "##vso[task.setvariable variable=valuesCommand]$valuesCommand"
+  displayName: 'Determine if we need --values parameter'
+- powershell: |
+    helm lint ${{ parameters.chartName }}/ --strict --set imagePullSecret=lint $(valuesCommand)
+  workingDirectory: charts
+  displayName: 'Lint ''${{ parameters.chartName }}'' Helm Chart'

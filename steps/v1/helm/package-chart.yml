@@ -1,0 +1,23 @@
+parameters:
+- name: chartName
+  displayName: Helm Chart Name
+  type: string
+- name: chartVersion
+  displayName: Helm Chart Version
+  type: string
+- name: appVersion
+  displayName: App Version
+  type: string
+- name: destination
+  displayName: Destination
+  type: string
+- name: workingDir
+  displayName: Working Directory
+  type: string
+
+steps:
+- script: |
+    mkdir ${{ parameters.destination }}/
+    helm package ${{ parameters.chartName }} --version ${{ parameters.chartVersion }} --app-version ${{ parameters.appVersion }} --destination ${{ parameters.destination }}
+  workingDirectory: ${{ parameters.workingDir }}
+  displayName: 'Package ''${{ parameters.chartName }}'' Helm chart v${{ parameters.chartVersion }} with app v${{ parameters.appVersion }}'
