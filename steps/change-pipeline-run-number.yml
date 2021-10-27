@@ -1,0 +1,10 @@
+parameters:
+- name: pipelineRunNumber
+  displayName: Pipeline Version
+  type: string
+
+steps:
+- powershell: |
+    Write-Host "##vso[build.updatebuildnumber]${{ parameters.pipelineRunNumber }}"
+    Write-Host "Build number is '${{ parameters.pipelineRunNumber }}'"
+  displayName: 'Change pipeline version to ${{ parameters.pipelineRunNumber }}'
