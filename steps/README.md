@@ -41,7 +41,7 @@ variables:
 steps:
 - template: steps/change-pipeline-run-number.yml
   parameters:
-    pipelineNumber: $(Artifact.Version)-$(Build.BuildNumber)
+    pipelineRunNumber: $(Artifact.Version)-$(Build.BuildNumber)
 ```
 
 ### Replace Tokens
