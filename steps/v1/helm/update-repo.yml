@@ -1,0 +1,3 @@
+steps:
+- script: helm repo update
+  displayName: 'Updating Helm repos'

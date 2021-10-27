@@ -1,0 +1,13 @@
+parameters:
+- name: repositoryName
+  type: string
+- name: repositoryUrl
+  type: string
+
+steps:
+- script: helm repo add ${{ parameters.repositoryName }} ${{ parameters.repositoryUrl }}
+  displayName: 'Add ${{ parameters.repositoryName }} Helm repo (${{ parameters.repositoryUrl }})'
+- template: ./update-repo.yml
+- template: ./list-available-charts.yml
+  parameters:
+    repositoryName: '${{ parameters.repositoryName }}'
