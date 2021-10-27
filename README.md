@@ -20,8 +20,6 @@ resources:
     # See https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml#github-service-connection
     endpoint: Codit
 
-# ...
-
 steps:
   # Specify the path to the template to use suffixed
   # with '@' and the name of your repository ID above
