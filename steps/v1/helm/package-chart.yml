@@ -14,6 +14,7 @@ parameters:
 - name: workingDir
   displayName: Working Directory
   type: string
+  default: 'charts'
 
 steps:
 - script: |
