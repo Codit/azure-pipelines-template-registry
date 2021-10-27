@@ -6,7 +6,29 @@ A registry of YAML templates for Azure Pipelines.
 
 ## Using the template registry
 
-Coming soon.
+You can easily use the template registry in your own pipelines:
+
+```yaml
+resources:
+  repositories:
+  - type: github
+    # Name of this GitHub repository
+    name: Codit/azure-pipelines-template-registry
+    # Name of repository to refer to in your pipeline
+    repository: template-registry
+    # Name of your GitHub service connection in Azure DevOps
+    # See https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml#github-service-connection
+    endpoint: Codit
+
+steps:
+  # Specify the path to the template to use suffixed
+  # with '@' and the name of your repository ID above
+- template: steps/replace-tokens.yml@template-registry
+  parameters:
+    directory: '$(Pipeline.Workspace)/package_azure/artifact/arm'
+```
+
+Learn more about adding repository resources in the [official documentation](https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=example%2Cparameter-schema#type).
 
 ## Registry structure
 
