@@ -39,7 +39,7 @@ variables:
 
 # Use the template to change the pipeline version
 steps:
-- template: steps/change-pipeline-run-number.yml
+- template: steps/v1/change-pipeline-run-number.yml
   parameters:
     pipelineRunNumber: $(Artifact.Version)-$(Build.BuildNumber)
 ```
@@ -51,7 +51,7 @@ Replace tokens allows you to easily replace all tokens in one or more files and 
 **Example** - Automatically replace tokens in all files in a folder:
 
 ```yaml
-- template: steps/replace-tokens.yml
+- template: steps/v1/replace-tokens.yml
   parameters:
     directory: '$(Pipeline.Workspace)/package_azure/artifact/arm'
 ```
@@ -59,7 +59,7 @@ Replace tokens allows you to easily replace all tokens in one or more files and 
 **Example** - Automatically replace tokens in a specific file in a folder:
 
 ```yaml
-- template: steps/replace-tokens.yml
+- template: steps/v1/replace-tokens.yml
   parameters:
     directory: '$(Pipeline.Workspace)/package_azure/artifact/arm'
     targetFiles: 'template.parameters.json'
