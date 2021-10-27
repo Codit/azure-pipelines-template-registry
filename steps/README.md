@@ -13,6 +13,8 @@ Learn more in the [official documentation](https://docs.microsoft.com/en-us/azur
 
 Change Pipeline Run Number allows you to change the number of a pipeline run to align with your needs. This is typically useful with deployment pipelines where you want to use the version of the artifact that is being deployed with an additional incremental version.
 
+For example - If your package pipeline generates a `1.10.0` you can use this step to change the run number of the deployment pipeline to `1.10.0-1` based on that version
+
 **Example** - Changing the pipeline number to include the version of a container image tag:
 
 ```yaml
